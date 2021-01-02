@@ -1,6 +1,7 @@
 # This file is the actual code for the custom Python algorithm linear-svc_1
 from dataiku.doctor.plugins.custom_prediction_algorithm import BaseCustomPredictionAlgorithm
-from sklearn.ensemble import AdaBoostRegressor
+#from sklearn.ensemble import AdaBoostRegressor
+from sklearn.svm import LinearSVC¶
 
 class CustomPredictionAlgorithm(BaseCustomPredictionAlgorithm):    
     """
@@ -21,7 +22,17 @@ class CustomPredictionAlgorithm(BaseCustomPredictionAlgorithm):
     """
     
     def __init__(self, prediction_type=None, params=None):        
-        self.clf = AdaBoostRegressor(random_state=params.get("random_state", None))
+        self.clf = LinearSVC¶( penalty='l2',
+                              loss='squared_hinge',
+                              dual=True,  
+                              C=1.0, 
+                              multi_class='ovr', 
+                              fit_intercept=True,
+                              intercept_scaling=1, 
+                              class_weight=None, 
+                              verbose=0, 
+                              random_state=None, 
+                              max_iter=1000)
         super(CustomPredictionAlgorithm, self).__init__(prediction_type, params)
     
     def get_clf(self):

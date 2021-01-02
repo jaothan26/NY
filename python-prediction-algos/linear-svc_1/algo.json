@@ -13,7 +13,7 @@
     
     // List of types of prediction for which the algorithm will be available.
     // Possibles values are: ["BINARY_CLASSIFICATION", "MULTICLASS", "REGRESSION"]
-    "predictionTypes": ["REGRESSION"],
+    "predictionTypes": ["BINARY_CLASSIFICATION", "MULTICLASS","REGRESSION"],
 
     // Depending on the mode you select, DSS will handle or not the building of the grid from the params
     // Possible values are ["NONE", "MANAGED", "CUSTOM"]
@@ -43,53 +43,24 @@
 
     Below is an example of parameters for an AdaBoost regressor from scikit learn.
     */
-    "params": [
-        {
-            "name": "n_estimators",
-            "label": "num estimators",
-            "description": "The maximum number of estimators at which boosting is terminated. In case of perfect fit, the learning procedure is stopped early.",
-            "type": "DOUBLES",
-            "defaultValue": [50, 100],
-            "allowDuplicates": false,
-            "gridParam": true
-        },
-        {
-            "name": "learning_rate",
-            "label": "learning rate",
-            "description":"Lower values slow down convergence and can make the model more robust. Typical values: 0.01 - 0.3",
-            "type": "DOUBLES",
-            "defaultValue": [0.2],
-            "allowDuplicates": false,
-            "gridParam": true
-        },
-        {
-            "name": "loss",
-            "label": "loss",
-            "description": "Type of loss used.",
-            "type": "MULTISELECT",
-            "defaultValue": ["linear"],
-            "selectChoices": [
-                {
-                    "value":"linear",
-                    "label":"linear"
-                },
-                {
-                    "value":"square",
-                    "label":"square"
-                },
-                {
-                    "value":"exponential",
-                    "label": "exponential"
-                }
-            ],
-            "gridParam": true
-        },
-        {
-            "name": "random_state",
-            "label": "Random state",
-            "description": "Using a fixed random seed allows for reproducible result.",
-            "type": "DOUBLE",
-            "defaultValue": 1337
-        }      
-    ]
+        "params": [
+  {
+      "name": "penalty",
+      "label": "penalty",
+      "description": " Specifies the norm used in the penalization.",
+      "type": "MULTISELECT",
+      "defaultValue": ["l2"],
+      "selectChoices": [
+          {
+              "value":"l2",
+              "label":"The ‘l2’ penalty is the standard used in SVC"
+          },
+          {
+              "value":"l1",
+              "label":"The ‘l1’ leads to coef_ vectors that are sparse."
+          }
+      ],
+      "gridParam": true
+   }   
+  ]
 }
